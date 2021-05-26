@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.JpaMemberRepository;
@@ -50,6 +51,11 @@ public class SpringCofing {
 //        return new JdbcMemberRepository(dataSource);
 //        return new JdbcTemplateMemberRepository(dataSource);
 //        return new JpaMemberRepository(em);
+//    }
+
+//    @Bean // @ComponentScan 대신 사용 가능
+//    public TimeTraceAop timeTraceAop() {
+//        return new TimeTraceAop();
 //    }
 
 }

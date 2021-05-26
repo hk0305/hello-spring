@@ -28,9 +28,9 @@ public class MemberService {
 
         // 중복 화원 검증
         validateDuplicateMember(member);
-
         memberRepository.save(member);
         return member.getId();
+
     }
 
     private void validateDuplicateMember(Member member) {
