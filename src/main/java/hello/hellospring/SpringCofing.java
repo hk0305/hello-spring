@@ -1,22 +1,33 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.JdbcTemplateMemberRepository;
+import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringCofing {
 
-    private DataSource dataSource;
+      /* JPA를 사용하지 않는 경우 */
+//    private DataSource dataSource;
+//    @Autowired
+//    public SpringCofing(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
+
+    /* JPA를 사용하는 경우 */
+    private EntityManager em;
 
     @Autowired
-    public SpringCofing(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringCofing(EntityManager em) {
+        this.em = em;
     }
 
     /* 자바 코드로 직접 Bean에 등록하기 */
@@ -27,8 +38,10 @@ public class SpringCofing {
 
     @Bean
     public MemberRepository memberRepository() {
-        //return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+//        return new MemoryMemberRepository();
+//        return new JdbcMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 
 }
